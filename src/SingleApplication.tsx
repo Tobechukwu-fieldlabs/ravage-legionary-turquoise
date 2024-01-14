@@ -1,5 +1,6 @@
 import { Application } from "./Applications";
 import styles from "./SingleApplication.module.css";
+
 function formatDate(date: string) {
   const newDate = new Date(date);
 
@@ -9,7 +10,14 @@ function formatDate(date: string) {
     year: "numeric",
   }).format(newDate);
   const [day, month, year] = dateFormat.split("/");
-  return `${year}-${month}-${day}`;
+  return `${day}-${month}-${year}`;
+}
+
+function formatPrice(productPrice: number): string {
+  return new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  }).format(productPrice);
 }
 
 const SingleApplication = ({ application }: { application: Application }) => {
@@ -31,7 +39,7 @@ const SingleApplication = ({ application }: { application: Application }) => {
       </div>
       <div className={styles.cell}>
         <sub>Loan Amount</sub>
-        <span>{application.loan_amount}</span>
+        <span>{formatPrice(application.loan_amount)}</span>
       </div>
       <div className={styles.cell}>
         <sub>Application Date</sub>
