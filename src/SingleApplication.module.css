@@ -1,6 +1,4 @@
 .SingleApplication {
-  /* display: grid;
-  grid-template-columns: 15% 15% auto 15% 15% 15%; */
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -14,7 +12,6 @@
 
 .cell {
   text-align: left;
-  padding: 0 15px;
 }
 
 .cell sub {
@@ -26,20 +23,22 @@
 }
 
 .cell span {
+  width: 100%;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #0c2340;
+  color: var(--color-denim-15);
+  word-wrap: break-word;
 }
 
 .cell:nth-child(3) span {
-  color: #246ac1;
+  color: var(--color-denim-45);
 }
 
 .cell:last-child {
   text-align: left;
 }
 
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 1250px) {
   .SingleApplication {
     display: grid;
     gap: 0;

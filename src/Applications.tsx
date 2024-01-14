@@ -23,6 +23,12 @@ const Applications = () => {
   const hasPageLoaded = useRef(false);
 
   const getApplications = async () => {
+    /**
+     * This condition here improves the UI.
+     * It prevents "setLoading" from being called after the first render.
+     */
+    if (!hasPageLoaded.current) setLoading(true);
+
     try {
       if (!hasPageLoaded.current) setLoading(true);
       const response = await fetch(
@@ -36,7 +42,11 @@ const Applications = () => {
       setApplications((prevState) => [...prevState, ...result]);
       setLoading(false);
     } catch (error: any) {
-      setError(error.message);
+      setError(
+        error.message.toLowerCase() === "failed to fetch"
+          ? "Failed to fetch, please refresh the page"
+          : error.message
+      );
       setApplications([]);
       setLoading(false);
     }
@@ -48,9 +58,9 @@ const Applications = () => {
   }, [pageNumber]);
 
   const emails = applications.map((application) => application.email);
-  const uniqueApplications = applications.filter(({ email }, index) => {
-    return !emails.includes(email, index + 1);
-  });
+  const uniqueApplications = applications.filter(
+    ({ email }, index) => !emails.includes(email, index + 1)
+  );
 
   if (loading) return <h1>Loading...</h1>;
 
