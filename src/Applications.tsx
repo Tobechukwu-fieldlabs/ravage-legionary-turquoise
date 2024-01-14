@@ -32,7 +32,12 @@ const Applications = () => {
     try {
       if (!hasPageLoaded.current) setLoading(true);
       const response = await fetch(
-        `http://localhost:3001/api/applications?_page=${pageNumber}&_limit=5`
+        `http://localhost:3001/api/applications?_page=${pageNumber}&_limit=5`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
       if (!response.ok) throw new Error("Something went wrong");
@@ -43,7 +48,7 @@ const Applications = () => {
       setLoading(false);
     } catch (error: any) {
       setError(
-        error.message.toLowerCase() === "failed to fetch"
+        error.message.includes("NetworkError")
           ? "Failed to fetch, please refresh the page"
           : error.message
       );
