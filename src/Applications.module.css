@@ -1,0 +1,29 @@
+.Applications {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem 2rem;
+}
+
+.ApplicationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.2rem;
+}
+
+.BtnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .Applications {
+    padding: 0 0 5rem 0;
+  }
+
+  .ApplicationContainer {
+    gap: 3rem;
+    margin-bottom: 4.2rem;
+  }
+}
