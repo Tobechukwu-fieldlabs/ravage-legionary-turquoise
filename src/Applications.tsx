@@ -47,11 +47,7 @@ const Applications = () => {
       setApplications((prevState) => [...prevState, ...result]);
       setLoading(false);
     } catch (error: any) {
-      setError(
-        error.message.includes("NetworkError")
-          ? "Failed to fetch, please refresh the page"
-          : error.message
-      );
+      setError(error.message);
       setApplications([]);
       setLoading(false);
     }
@@ -69,7 +65,7 @@ const Applications = () => {
 
   if (loading) return <h1>Loading...</h1>;
 
-  if (error !== "") return <h1>{error}</h1>;
+  if (error !== "") return <h1>{error}. Please refresh</h1>;
 
   return (
     <div className={styles.Applications}>
