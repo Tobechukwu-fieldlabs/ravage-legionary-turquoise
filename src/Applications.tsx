@@ -65,7 +65,7 @@ const Applications = () => {
 
   if (loading) return <h1>Loading...</h1>;
 
-  if (error !== "") return <h1>{error}. Please refresh</h1>;
+  if (error !== "") return <h1>{error}.</h1>;
 
   return (
     <div className={styles.Applications}>
